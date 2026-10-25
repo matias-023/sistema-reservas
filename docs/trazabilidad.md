@@ -35,6 +35,22 @@
 
 **Verificación humana:** el solicitante detectó el problema, definió las decisiones anteriores y aprobó la especificación corregida, incluidos el formato `AAAA-MM-DD HH:MM`, la zona horaria `America/Argentina/Cordoba`, el rechazo de horas locales inexistentes o ambiguas sin ajustes automáticos y la ausencia de una duración máxima. No se ejecutaron pruebas de la aplicación, que todavía no está implementada.
 
-**Referencias:** [docs/especificacion.md](./especificacion.md). El commit existente `0f07c` (`docs: Refinando las especificaciones del proyecto`) incluye cambios en la especificación y en este archivo; no se creó un commit para este episodio.
+**Estado:** Completado.
+
+## D-03 — Preparación de la estructura inicial
+
+**Objetivo:** preparar una estructura mínima para una aplicación local de consola en Python, respetando la arquitectura y las decisiones de diseño aprobadas en la especificación.
+
+**Instrucción proporcionada:** tomar como referencia [docs/especificacion.md](./especificacion.md), revisar la estructura del repositorio y crear únicamente la estructura inicial, las dependencias necesarias y la configuración imprescindible; no implementar todavía todas las funcionalidades. Registrar esta intervención y no inventar pruebas, commits, acciones ni evidencias.
+
+**Acciones realizadas:** se comprobó que `src/` y `tests/` estaban vacíos y se revisaron la especificación, el `.gitignore` y el estado existente del repositorio. Se creó el paquete `src/reservas` con módulos separados para CLI, lógica de negocio y persistencia SQLite; la CLI quedó como punto de entrada de demostración, sin operaciones de reservas implementadas. Se añadió `data/.gitkeep` para conservar el directorio local de datos, se ampliaron las reglas de `.gitignore` para cachés Python y archivos de base de datos, y se agregó una prueba de humo con `unittest`. No se añadieron dependencias externas.
+
+**Resultado:** el paquete puede invocarse como módulo con `python -m reservas` una vez que `src` está en `PYTHONPATH`. La CLI informa que la aplicación está en construcción; la lógica de reservas y la persistencia todavía no están implementadas.
+
+**Verificación ejecutada:** con `src` en `PYTHONPATH`, `C:\Users\usuario\AppData\Local\Programs\Python\Python314\python.exe -m unittest discover -s tests -v` completó correctamente una prueba de humo de la estructura (1 prueba). También se invocó `C:\Users\usuario\AppData\Local\Programs\Python\Python314\python.exe -m reservas` y se comprobó que ejecuta el punto de entrada preliminar. Estas verificaciones no prueban las funcionalidades de reservas.
+
+**Verificación humana:** el solicitante aprobó la estructura inicial y autorizó marcar este episodio como completado para realizar el commit correspondiente.
+
+**Evidencias:** [docs/especificacion.md](./especificacion.md), archivos del esqueleto en `src/reservas/`, `tests/test_structure.py`, `data/.gitkeep`, `.gitignore` y resultados observados de los comandos anteriores. No se creó ningún commit.
 
 **Estado:** Completado.

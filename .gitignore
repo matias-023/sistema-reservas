@@ -11,3 +11,10 @@ Thumbs.db
 
 # Configuración local de editores
 .vscode/
+
+# Archivos generados por Python
+__pycache__/
+*.py[cod]
+
+# Base de datos local
+data/*.db
