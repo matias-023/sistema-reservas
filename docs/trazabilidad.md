@@ -74,15 +74,15 @@ Con esta instrucción quedaron definidas la zona horaria `America/Argentina/Cord
 
 - **Adaptación del proceso:** se dividió el desarrollo en etapas y se limitó esta intervención a preparar la estructura, dejando la lógica funcional para una delegación posterior. La instrucción estableció expresamente ese límite y exigió informar las verificaciones sin inventar resultados. La respuesta registrada mantuvo el alcance previsto y dejó las operaciones de reservas sin implementar.
 
-- **Evidencias verificables:** el commit `fff2336` (`docs: Actualizando trazabilidad del proyecto. src: Redefiniendo estructura del proyecto`) incorporó el esqueleto inicial, junto con `data/.gitkeep`, las modificaciones de `.gitignore`, `tests/test_structure.py` y la actualización de la trazabilidad. El commit posterior `b090669` (`Implementación lógica del sistema. Redacción del README.md.`) reemplazó la prueba de estructura por pruebas funcionales. Por eso, `tests/test_structure.py` ya no está presente en el árbol actual; su existencia histórica puede comprobarse en `fff2336`. Los archivos actuales de `src/reservas/` incluyen cambios posteriores y no representan exclusivamente el resultado de D-03.
+- **Evidencias verificables:** el commit `fff2336` (`docs: Actualizando trazabilidad del proyecto. src: Redefiniendo estructura del proyecto`) incorporó el esqueleto inicial, junto con `data/.gitkeep`, las modificaciones de `.gitignore`, `tests/test_structure.py` y la actualización de la trazabilidad. El commit posterior `b090669` (`Implementación lógica del sistema. Redacción del README.md.`) reemplazó la prueba de estructura por pruebas funcionales. Por eso, `tests/test_structure.py` ya no está presente en el árbol actual; su existencia histórica puede comprobarse en `fff2336`. Los archivos actuales de `src/reservas/` incluyen cambios posteriores y no representan exclusivamente el resultado de D-02.
 
-- **Estado y límites:** completado como preparación estructural. La prueba de humo y el punto de entrada se ejecutaron según el registro disponible. La persona responsable autorizó continuar con la implementación funcional. Esta decisión no implica que se haya realizado una revisión técnica independiente adicional de todos los cambios de D-03.
+- **Estado y límites:** completado como preparación estructural. La prueba de humo y el punto de entrada se ejecutaron según el registro disponible. La persona responsable autorizó continuar con la implementación funcional. Esta decisión no implica que se haya realizado una revisión técnica independiente adicional de todos los cambios de D-02.
 
 ### D-03 — Implementación de la lógica central de reservas
 
 - **Tipo y objetivo:** episodio de delegación para implementar y verificar el catálogo, la disponibilidad, la creación y cancelación de reservas, las validaciones y la persistencia descritas en [docs/especificacion.md](./especificacion.md).
 
-- **Contexto y referencias:** estructura creada en D-03, arquitectura aprobada, especificación vigente y requisito de utilizar bases de prueba aisladas, conservar el historial de cancelaciones y no crear commits automáticamente.
+- **Contexto y referencias:** estructura creada en D-02, arquitectura aprobada, especificación vigente y requisito de utilizar bases de prueba aisladas, conservar el historial de cancelaciones y no crear commits automáticamente.
 
 - **Instrucciones proporcionadas:** se realizaron dos intervenciones con Copilot. La primera solicitó implementar las operaciones definidas en la especificación, mantener separadas la lógica de negocio, la persistencia SQLite y la interfaz de consola, agregar pruebas automatizadas, ejecutar la suite, corregir los errores encontrados y actualizar la trazabilidad, dejando pendiente la aceptación humana. La segunda solicitó revisar la implementación sin modificar archivos, contrastarla con la especificación, ejecutar nuevamente las pruebas e informar problemas concretos y una recomendación de aprobación. Los prompts completos están disponibles en el historial de la interacción, pero no se conservaron como archivos independientes del repositorio.
 
@@ -136,7 +136,7 @@ $env:PYTHONPATH = (Resolve-Path .\src).Path
 
 Resultado observado: **17 pruebas ejecutadas, 17 aprobadas (`OK`)**. La suite usa SQLite temporal; no se inspeccionó ni se usó la base real `data/reservas.db`.
 
-Las verificaciones manuales de persistencia y validaciones que aparecen en D-04 son declaraciones registradas de la persona responsable. No se realizaron nuevamente durante la revisión de trazabilidad.
+Las verificaciones manuales de persistencia y validaciones que aparecen en D-03 son declaraciones registradas de la persona responsable. No se realizaron nuevamente durante la revisión de trazabilidad.
 
 ## 3. Evidencias y trazabilidad en Git
 

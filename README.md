@@ -136,6 +136,6 @@ La descripción de estas prácticas no implica que todos los cambios o resultado
 
 ## 4. Registro de decisiones y delegación
 
-El documento [`docs/trazabilidad.md`](docs/trazabilidad.md) registra los episodios de delegación D-01 a D-04, las decisiones humanas, las intervenciones realizadas y las evidencias disponibles, incluidas las referencias a los cambios versionados.
+El documento [`docs/trazabilidad.md`](docs/trazabilidad.md) registra los episodios de delegación D-01 a D-03, las decisiones humanas, las intervenciones realizadas y las evidencias disponibles, incluidas las referencias a los cambios versionados.
 
 La [especificación del sistema](docs/especificacion.md) complementa este registro con los requisitos funcionales, las reglas de negocio y las decisiones de diseño.
