@@ -12,7 +12,7 @@ Las reglas descritas para el proyecto establecen que:
 - Las reservas pasadas se permiten. Las horas locales inexistentes o ambiguas se rechazan sin ajustarlas automáticamente.
 - Cancelar conserva el registro histórico y libera el horario; las reservas activas y canceladas persisten en SQLite.
 
-Los criterios documentados de aceptación incluyen creación válida, validación de entradas, conflictos y consecutividad, reservas simultáneas de equipos distintos, cancelación con conservación del historial y persistencia tras reiniciar. Estas reglas y pruebas se describen en [docs/especificacion.md](docs/especificacion.md); no se dispone aquí del PDF de una consigna original para verificar equivalencia con ese material.
+Los criterios documentados de aceptación incluyen creación válida, validación de entradas, conflictos y consecutividad, reservas simultáneas de equipos distintos, cancelación con conservación del historial y persistencia tras reiniciar. Estas reglas y pruebas se describen en [docs/especificacion.md](docs/especificacion.md).
 
 ## 2. Solución
 
@@ -99,8 +99,51 @@ Al volver a ejecutar la aplicación, se crea e inicializa una base nueva; las re
 
 ## 3. Preparación del agente
 
-[docs/trazabilidad.md](docs/trazabilidad.md) registra el uso de GitHub Copilot en modo Agent como asistente de programación en Visual Studio Code, elegido para delegar y documentar el trabajo. Allí se detallan el entorno, las instrucciones recuperables, la supervisión humana y sus límites de evidencia. No están disponibles el identificador del modelo, la versión exacta de Python usada, ni una configuración versionada o transcripción completa de los prompts.
+### 3.1. Entorno y agente utilizado
+
+Para el desarrollo del sistema de reservas se utilizó **GitHub Copilot en modo Agent, integrado en Visual Studio Code**, como agente de programación asistida por inteligencia artificial.
+
+La información recuperada del entorno de trabajo es la siguiente:
+
+| Elemento | Información |
+|---|---|
+| Editor | Visual Studio Code 1.143.1 |
+| Lenguaje de programación | Python 3.14 |
+| Agente | GitHub Copilot en modo Agent |
+| Modelo informado | `gpt-6-luna` |
+| Herramientas y permisos | Lectura y modificación de archivos, y ejecución de pruebas |
+| Revisión humana | Revisión de diferencias (*diff*), aprobación de cambios y ejecución de pruebas |
+
+La versión de la extensión de GitHub Copilot todavía está pendiente de recopilación. Asimismo, el identificador del modelo se registra tal como fue recuperado y queda pendiente de contrastar con la información mostrada por la herramienta. Las versiones del entorno se documentan según los datos disponibles, sin asumir que se ha conservado una evidencia independiente de cada una.
+
+### 3.2. Función y contexto proporcionado
+
+El agente se empleó como asistente de programación para desarrollar una aplicación local de reservas de equipamiento de laboratorio. El objetivo del proceso no se limitó a obtener código funcional, sino que también contempló documentar la delegación de tareas, la verificación de resultados y las decisiones tomadas durante el desarrollo.
+
+Como contexto inicial, se informó al agente que se trataba de un desafío académico y que se utilizaría GitHub Copilot en modo Agent para asistir en la implementación y registrar el proceso de trabajo.
+
+El primer prompt recuperado estableció que, antes de escribir código o modificar archivos, el agente debía analizar los requisitos y proponer un plan de implementación por etapas. La solicitud incluyó el equipamiento inicial, los requisitos funcionales, las reglas de negocio, las pruebas obligatorias y las restricciones del sistema.
+
+En particular, se le solicitó:
+
+- Proponer una arquitectura mínima y una tecnología adecuada.
+- Identificar las decisiones técnicas que requerían una definición explícita.
+- Dividir la implementación en tareas pequeñas y verificables.
+- Relacionar cada requisito con pruebas que permitieran comprobar su cumplimiento.
+- Identificar las decisiones que debían ser revisadas y aprobadas por una persona.
+
+También se indicó expresamente que no debía escribir código ni modificar archivos durante esa primera etapa, que no debía inventar requisitos y que debía diferenciar entre requisitos proporcionados, recomendaciones y decisiones pendientes.
+
+Los extractos de los prompts iniciales se incorporaron a los episodios D-01 y D-02 de este documento. Los textos completos se pueden consultar en el historial de GitHub Copilot, pero no se archivan íntegramente en el repositorio. Los episodios posteriores se distinguen según se disponga de un prompt literal o de un resumen de la intervención.
+
+### 3.3. Herramientas y supervisión humana
+
+Según la información recuperada, el agente contó con capacidades para leer y modificar archivos del proyecto y ejecutar pruebas. La revisión humana se contempló mediante la inspección de los cambios propuestos, su aprobación y la ejecución de pruebas para verificar el comportamiento de la aplicación.
+
+Estos mecanismos se consideran parte del proceso de control del desarrollo asistido. Sin embargo, la descripción de los mecanismos de supervisión no implica, por sí sola, que todos los cambios hayan sido revisados ni que todas las pruebas hayan resultado satisfactorias. La aceptación de resultados específicos debe justificarse mediante los episodios de delegación, los cambios versionados y las evidencias de prueba correspondientes.
 
 ## 4. Registro de decisiones y delegación
 
-[docs/trazabilidad.md](docs/trazabilidad.md) contiene los episodios D-01 a D-04, las decisiones humanas registradas, las verificaciones declaradas y la relación con commits. [docs/especificacion.md](docs/especificacion.md) recoge las reglas y decisiones de diseño del sistema. Esos documentos distinguen lo que consta en archivos y Git de la información que no puede verificarse independientemente.
+El documento [docs/trazabilidad.md](docs/trazabilidad.md) registra los episodios de delegación D-01 a D-04, las decisiones tomadas, las intervenciones humanas y las evidencias asociadas a los cambios versionados.
+
+La [especificación del sistema](docs/especificacion.md) complementa este registro con los requisitos funcionales, las reglas de negocio y las decisiones de diseño.

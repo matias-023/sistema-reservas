@@ -1,112 +1,127 @@
 # Trazabilidad del desarrollo del sistema de reservas
 
-## 1. Preparación del agente
-
-### 1.1. Entorno y agente utilizado
-
-Para el desarrollo del sistema de reservas se utilizó **GitHub Copilot en modo Agent, integrado en Visual Studio Code**, como agente de programación asistida por inteligencia artificial.
-
-La información recuperada del entorno de trabajo es la siguiente:
-
-| Elemento | Información |
-|---|---|
-| Editor | Visual Studio Code 1.143.1 |
-| Lenguaje de programación | Python 3.14 |
-| Agente | GitHub Copilot en modo Agent |
-| Modelo informado | `gpt-6-luna` |
-| Herramientas y permisos | Lectura y modificación de archivos, y ejecución de pruebas |
-| Revisión humana | Revisión de diferencias (*diff*), aprobación de cambios y ejecución de pruebas |
-
-La versión de la extensión de GitHub Copilot todavía está pendiente de recopilación. Asimismo, el identificador del modelo se registra tal como fue recuperado y queda pendiente de contrastar con la información mostrada por la herramienta. Las versiones del entorno se documentan según los datos disponibles, sin asumir que se ha conservado una evidencia independiente de cada una.
-
-### 1.2. Función y contexto proporcionado
-
-El agente se empleó como asistente de programación para desarrollar una aplicación local de reservas de equipamiento de laboratorio. El objetivo del proceso no se limitó a obtener código funcional, sino que también contempló documentar la delegación de tareas, la verificación de resultados y las decisiones tomadas durante el desarrollo.
-
-Como contexto inicial, se informó al agente que se trataba de un desafío académico y que se utilizaría GitHub Copilot en modo Agent para asistir en la implementación y registrar el proceso de trabajo.
-
-El primer prompt recuperado estableció que, antes de escribir código o modificar archivos, el agente debía analizar los requisitos y proponer un plan de implementación por etapas. La solicitud incluyó el equipamiento inicial, los requisitos funcionales, las reglas de negocio, las pruebas obligatorias y las restricciones del sistema.
-
-En particular, se le solicitó:
-
-- Proponer una arquitectura mínima y una tecnología adecuada.
-- Identificar las decisiones técnicas que requerían una definición explícita.
-- Dividir la implementación en tareas pequeñas y verificables.
-- Relacionar cada requisito con pruebas que permitieran comprobar su cumplimiento.
-- Identificar las decisiones que debían ser revisadas y aprobadas por una persona.
-
-También se indicó expresamente que no debía escribir código ni modificar archivos durante esa primera etapa, que no debía inventar requisitos y que debía diferenciar entre requisitos proporcionados, recomendaciones y decisiones pendientes.
-
-Los prompts originales están disponibles en el historial de GitHub Copilot. Su recopilación y vinculación con los episodios de delegación constituyen una tarea pendiente para completar la trazabilidad del proceso.
-
-### 1.3. Herramientas y supervisión humana
-
-Según la información recuperada, el agente contó con capacidades para leer y modificar archivos del proyecto y ejecutar pruebas. La revisión humana se contempló mediante la inspección de los cambios propuestos, su aprobación y la ejecución de pruebas para verificar el comportamiento de la aplicación.
-
-Estos mecanismos se consideran parte del proceso de control del desarrollo asistido. Sin embargo, la descripción de los mecanismos de supervisión no implica, por sí sola, que todos los cambios hayan sido revisados ni que todas las pruebas hayan resultado satisfactorias. La aceptación de resultados específicos debe justificarse mediante los episodios de delegación, los cambios versionados y las evidencias de prueba correspondientes.
-
-### 1.4. Evidencias pendientes
-
-Para completar el registro de la preparación del agente, quedan pendientes las siguientes tareas:
-
-- Recuperar la versión instalada de la extensión de GitHub Copilot.
-- Contrastar el identificador del modelo con el dato que muestra la herramienta, si está disponible.
-- Recopilar los prompts originales en orden cronológico y relacionarlos con las tareas delegadas.
-- Identificar las instrucciones persistentes o configuraciones específicas del agente que efectivamente se utilizaron, si existieron.
-- Precisar el contexto disponible para cada intervención relevante.
-- Vincular los episodios de delegación con los archivos modificados, los commits, las pruebas y las decisiones de aceptación, corrección o rechazo.
-- Documentar ejemplos concretos de revisión humana y, cuando corresponda, de adaptación de las instrucciones o del enfoque de trabajo.
-
-Los elementos pendientes no se completarán mediante suposiciones. Si algún dato no puede recuperarse, se indicará expresamente como no disponible.
-
-## 2. Registro de episodios de delegación
+## 1. Registro de episodios de delegación
 
 Los resúmenes de instrucciones que siguen describen las intervenciones según la trazabilidad y los archivos disponibles. No son transcripciones literales. El repositorio no contiene enlaces archivados a sesiones o conversaciones.
 
-### D-01 — Análisis de requisitos y planificación
+### D-01. Análisis de requisitos y planificación inicial
 
-- **Tipo y objetivo:** episodio de delegación de análisis y planificación; proponer una arquitectura mínima y un plan verificable antes de implementar.
-- **Contexto y referencias:** se proporcionó la descripción del desafío en la interacción de trabajo. El contenido del PDF original no está disponible aquí.
-- **Instrucción disponible:** el registro resume la solicitud como analizar requisitos, recomendar arquitectura y tecnología, identificar decisiones pendientes, proponer etapas y pruebas, y no escribir código. El prompt textual original no está archivado.
-- **Acciones y resultado:** la trazabilidad registra que el agente inspeccionó la estructura del repositorio y propuso Python, CLI, SQLite y separación entre interfaz, lógica de negocio y persistencia.
-- **Decisión humana:** la persona responsable aceptó esa arquitectura y decidió usar las decisiones acordadas como base para implementar. La decisión está consignada en [docs/trazabilidad.md](./trazabilidad.md); no hay una captura independiente de esa conversación en el repositorio.
-- **Evidencia verificable:** la decisión quedó documentada en [docs/trazabilidad.md](./trazabilidad.md). El commit `0f07cf3` introdujo la especificación y el primer registro D-01; `d33f71f` actualizó el registro para consignar la aceptación humana.
-- **Estado y límites:** completado como análisis y planificación. No significa que el sistema estuviera implementado ni probado en esa etapa. El prompt original y la inspección inicial no tienen registros independientes disponibles.
+**Objetivo:** obtener un plan de implementación antes de comenzar a escribir código, separando los requisitos de la consigna de las recomendaciones del agente y de las decisiones pendientes.
 
-### D-02 — Revisión de la especificación de fechas y duración
+**Extracto real del prompt:**
 
-- **Tipo y objetivo:** episodio de delegación para revisar y corregir la especificación de fecha/hora, zona horaria, transiciones horarias y duración máxima.
-- **Contexto y referencias:** la especificación en preparación y las decisiones de diseño comunicadas por la persona responsable.
-- **Instrucción disponible:** el registro documenta que se identificó que `AAAA-MM-DD HH` no expresaba minutos, y que se solicitaron correcciones para usar `AAAA-MM-DD HH:MM`, rechazar horas locales inexistentes o ambiguas sin ajustes automáticos y no imponer una duración máxima. No se conserva el prompt original como texto independiente.
-- **Acciones y resultado:** [docs/especificacion.md](./especificacion.md) quedó con formato `AAAA-MM-DD HH:MM`, zona `America/Argentina/Cordoba`, rechazo de horas locales inexistentes o ambiguas y sin duración máxima.
-- **Decisión humana:** la persona responsable definió y aprobó esas decisiones, según el registro de D-02.
-- **Evidencia verificable:** el commit `0f07cf3` (`docs: Refinando las especificaciones del proyecto`) añadió el contenido de la especificación y una primera entrada de trazabilidad. El commit `d33f71f` (`docs: cerrar decisiones iniciales de diseño`) añadió el registro D-02 y consignó el cierre humano de las decisiones. Antes de `0f07cf3`, Git muestra `docs/especificacion.md` como archivo vacío; por ello, la existencia del formato anterior se respalda en el registro del episodio, no en una versión histórica no vacía de la especificación.
-- **Estado y límites:** completado según la aprobación registrada. No implica implementación ni pruebas de la aplicación.
+> Antes de escribir código, analizá los requisitos siguientes y proponé un plan de implementación por etapas.
+
+También se solicitó que el agente identificara una arquitectura mínima, decisiones pendientes, tareas verificables, pruebas para cada requisito y decisiones que debían revisarse y aprobarse por una persona. Se indicó expresamente que no debía escribir código, modificar archivos ni afirmar haber ejecutado pruebas.
+
+**Acción del agente:** inspeccionó el estado del repositorio y leyó `README.md`, `docs/especificacion.md` y `docs/trazabilidad.md`. Después propuso una aplicación local en Python, con interfaz CLI, persistencia SQLite y separación entre interfaz, lógica de negocio y persistencia. También enumeró decisiones de diseño pendientes y propuso un plan de implementación con sus respectivas verificaciones.
+
+**Decisión humana:** la propuesta se utilizó como base para definir la arquitectura inicial. La aceptación explícita de Python, CLI, SQLite y la separación de responsabilidades quedó registrada en la interacción posterior D-02.
+
+**Resultado y evidencia:** la planificación se incorporó a la evolución de `docs/especificacion.md` y `docs/trazabilidad.md`. Los commits `0f07cf3` y `d33f71f` permiten consultar la evolución de esos documentos.
+
+**Verificación y límites:** la respuesta inicial declaró que no se había escrito código, modificado archivos ni ejecutado pruebas durante esa intervención. El plan propuesto no constituye por sí mismo evidencia de que las funcionalidades se hayan implementado o probado.
+
+### D-02. Aprobación de la arquitectura y definición de decisiones de diseño
+
+**Objetivo:** revisar las recomendaciones de D-01, tomar decisiones explícitas sobre los aspectos que la consigna no especificaba y actualizar el plan antes de implementar.
+
+**Extracto real del primer prompt:**
+
+> Acepto la recomendación de utilizar Python, una interfaz de línea de comandos (CLI), SQLite y una arquitectura mínima que separe interfaz, lógica de negocio y persistencia.
+
+Además, se aprobaron los intervalos semiabiertos `[inicio, fin)`, el formato inicial `AAAA-MM-DD HH:MM`, el uso de la hora local de Corrientes, el rechazo de solicitantes vacíos después de eliminar espacios exteriores, la identificación de reservas mediante un ID único y la conservación del historial sin borrado automático.
+
+El prompt solicitó comparar las decisiones con los requisitos originales, actualizar el plan, señalar los aspectos pendientes y no modificar archivos ni escribir código en esa etapa.
+
+**Acción del agente:** comparó las decisiones propuestas con los requisitos y no identificó contradicciones. Actualizó el plan de trabajo y señaló que todavía era necesario precisar el identificador de la zona horaria y la ubicación de la base de datos. También quedaba pendiente definir el formato final de la CLI.
+
+**Decisión humana y segundo extracto real del prompt:**
+
+Para cerrar los aspectos pendientes, se proporcionó la siguiente instrucción:
+
+> En base a los aspectos que quedan pendientes:
+>
+> - Identificador IANA de la zona horaria: Utiliza `/America/Argentina/Cordoba` para representar la hora local de corrientes.
+> - Ubicación exacta de `data/reservas.db`: Puedes crear el directorio `data/` con el archivo reservas.db que es donde almacenaremos la base de datos.
+> - Formato final de la CLI: Será un menú interactivo de manera que sea más amigable para el usuario final.
+>
+> No realices modificaciones en archivos, ni crees nuevos archivos aún. Confirmame y actualiza el plan de ejecución primero.
+
+Con esta instrucción quedaron definidas la zona horaria `America/Argentina/Cordoba`, la ubicación de la base de datos en `data/reservas.db` y una interfaz CLI basada en un menú interactivo. También se reiteró que el agente debía actualizar el plan sin crear ni modificar archivos en esa intervención.
+
+**Resultado y evidencia:** las decisiones iniciales de diseño se reflejaron en `docs/especificacion.md` y en el registro de trazabilidad. Los commits `0f07cf3` y `d33f71f` permiten revisar la evolución documental relacionada. La implementación posterior permite contrastar las decisiones aprobadas con el código existente.
+
+**Verificación y límites:** las intervenciones documentadas en este episodio corresponden a la planificación y definición de criterios, no a la implementación. Los prompts demuestran las instrucciones dadas y las decisiones humanas expresadas, pero no prueban por sí solos que el agente haya actualizado correctamente el plan ni que las decisiones se hayan implementado. Esos resultados deben verificarse en las respuestas del agente, los documentos versionados y el código del proyecto.
 
 ### D-03 — Preparación de la estructura inicial
 
-- **Tipo y objetivo:** episodio de delegación para preparar el esqueleto Python, la separación inicial de módulos y una verificación mínima sin implementar las operaciones de reservas.
-- **Contexto y referencias:** la arquitectura aprobada en D-01, las decisiones registradas en [docs/especificacion.md](./especificacion.md) y el estado inicial del repositorio.
-- **Instrucción disponible:** la trazabilidad resume que se pidió revisar la estructura, crear únicamente el esqueleto y la configuración imprescindible, y no implementar aún las funcionalidades completas. No se conserva una transcripción literal.
-- **Acciones y resultado:** se creó [src/reservas/](../src/reservas/) con puntos de entrada y módulos iniciales para CLI, servicio y repositorio, se preparó `data/`, se ajustó `.gitignore` y se añadió una prueba de humo. El commit `fff2336` añadió esos archivos. El commit posterior `b090669` reemplazó la prueba de estructura por pruebas de reservas.
-- **Decisión humana:** la persona responsable aprobó el esqueleto y autorizó completar D-03, según la trazabilidad disponible.
-- **Evidencia verificable:** `fff2336` contiene los cambios del esqueleto, [data/.gitkeep](../data/.gitkeep), `.gitignore`, el archivo histórico `tests/test_structure.py` y la actualización del registro. Los archivos actuales bajo [src/reservas/](../src/reservas/) reflejan el desarrollo posterior, no solamente el esqueleto original.
-- **Estado y límites:** completado como preparación estructural. La prueba de humo histórica ya no existe en el árbol actual; el commit muestra que sí estuvo presente.
+- **Tipo y objetivo:** episodio de delegación orientado a preparar el esqueleto inicial de la aplicación en Python, establecer la separación entre interfaz, lógica de negocio y persistencia, y realizar una verificación mínima sin implementar las operaciones completas de reservas.
+
+- **Contexto y referencias:** la arquitectura propuesta en D-01, las decisiones aprobadas y registradas en [docs/especificacion.md](./especificacion.md), y la estructura existente del repositorio.
+
+- **Instrucción proporcionada (extracto literal):**
+
+  > Tomá como referencia `docs/especificacion.md` y prepará la estructura inicial del proyecto.
+  >
+  > Antes de modificar archivos:
+  >
+  > 1. Explicá brevemente la arquitectura propuesta.
+  > 2. Indicá la responsabilidad de cada módulo.
+  > 3. Explicá cómo se separarán la lógica de reservas, la persistencia y la interfaz.
+  > 4. Indicá cómo se ejecutarán las pruebas.
+  > 5. Revisá la estructura actual del repositorio para evitar duplicar archivos o modificar documentación innecesariamente.
+  >
+  > Después de presentar el plan, implementá únicamente la estructura inicial, las dependencias necesarias y los archivos de configuración imprescindibles.
+  >
+  > Respetá las decisiones aprobadas, no implementes todavía todas las funcionalidades, no agregues dependencias sin justificar su necesidad y actualizá `docs/trazabilidad.md` sin inventar acciones, pruebas, commits ni evidencias.
+
+- **Acciones realizadas por el agente:** Copilot revisó la especificación, la trazabilidad, el archivo `.gitignore` y la estructura del repositorio. Preparó el paquete `src/reservas/`, con módulos iniciales para la interfaz de consola (`cli.py`), la lógica de negocio (`service.py`) y la persistencia (`repository.py`). También creó los puntos de entrada del paquete, agregó `data/.gitkeep`, ajustó las reglas de `.gitignore` y creó `tests/test_structure.py` como prueba de humo. No agregó dependencias externas ni implementó las operaciones completas de reservas.
+
+- **Resultado y verificación técnica:** la CLI quedó como punto de entrada provisional, ejecutable mediante `python -m reservas` con `src` configurado en `PYTHONPATH`. Según el registro de ejecución, `python -m unittest discover -s tests -v` finalizó correctamente con una prueba de humo y la invocación del módulo también se ejecutó. Estas comprobaciones verificaron el esqueleto inicial, no las funcionalidades de reservas.
+
+- **Decisión y supervisión humana:** la trazabilidad disponible registra la aprobación del esqueleto y la continuación hacia la implementación funcional. Sin embargo, la revisión humana final de los cambios de esta intervención debe distinguirse de las pruebas ejecutadas por el agente. No se atribuye a este episodio una revisión adicional que no esté documentada.
+
+- **Adaptación del proceso:** se dividió el desarrollo en etapas y se limitó esta intervención a preparar la estructura, dejando la lógica funcional para una delegación posterior. La instrucción estableció expresamente ese límite y exigió informar las verificaciones sin inventar resultados. La respuesta registrada mantuvo el alcance previsto y dejó las operaciones de reservas sin implementar.
+
+- **Evidencias verificables:** el commit `fff2336` (`docs: Actualizando trazabilidad del proyecto. src: Redefiniendo estructura del proyecto`) incorporó el esqueleto inicial, junto con `data/.gitkeep`, las modificaciones de `.gitignore`, `tests/test_structure.py` y la actualización de la trazabilidad. El commit posterior `b090669` (`Implementación lógica del sistema. Redacción del README.md.`) reemplazó la prueba de estructura por pruebas funcionales. Por eso, `tests/test_structure.py` ya no está presente en el árbol actual; su existencia histórica puede comprobarse en `fff2336`. Los archivos actuales de `src/reservas/` incluyen cambios posteriores y no representan exclusivamente el resultado de D-03.
+
+- **Estado y límites:** completado como preparación estructural. La prueba de humo y el punto de entrada se ejecutaron según el registro disponible. La persona responsable autorizó continuar con la implementación funcional. Esta decisión no implica que se haya realizado una revisión técnica independiente adicional de todos los cambios de D-03.
 
 ### D-04 — Implementación de la lógica central de reservas
 
-- **Tipo y objetivo:** episodio de delegación de implementación y verificación de catálogo, disponibilidad, creación, cancelación, validaciones y persistencia descritos en [docs/especificacion.md](./especificacion.md).
-- **Contexto y referencias:** estructura creada en D-03, arquitectura aprobada, especificación vigente y petición de usar bases de prueba aisladas, conservar la historia de cancelaciones y no crear un commit automáticamente.
-- **Instrucción disponible:** la trazabilidad resume que se pidió implementar las operaciones definidas, comprobar que consulta y creación compartieran la regla de conflicto, ejecutar pruebas y dejar la aceptación humana a la persona responsable. El prompt literal no se conserva como archivo.
-- **Implementación realizada:** se incorporaron modelos de equipo y reserva; validación del formato y de la zona horaria; rechazo de fechas inválidas y horas locales inexistentes o ambiguas; validaciones de equipo, solicitante e intervalo; consulta y creación con regla común de superposición; persistencia SQLite; cancelación no destructiva; y operaciones CLI. La dependencia [requirements.txt](../requirements.txt), que declara `tzdata`, se añadió porque el entorno Windows no encontraba los datos IANA. Estos cambios están incluidos en `b090669`.
-- **Errores durante el desarrollo:** la trazabilidad registra que una primera ejecución encontró que el catálogo SQLite no quedaba confirmado y que una fecha de prueba escogida no era ambigua según los datos de zona horaria. También registra la corrección de la transacción y del ejemplo de prueba. Los detalles no están respaldados por logs independientes archivados; el estado final se puede revisar en el código y las pruebas actuales.
-- **Pruebas automatizadas:** [tests/test_reservations.py](../tests/test_reservations.py) usa directorios y archivos SQLite temporales. La trazabilidad del episodio registra 17 pruebas aprobadas. En la revisión de este documento se ejecutó de nuevo `.\.venv\Scripts\python.exe -m unittest discover -s tests -v`, con `PYTHONPATH` configurado a `src`: el resultado real fue `Ran 17 tests ... OK`. Esto no repite las verificaciones manuales de la aplicación.
-- **Verificaciones manuales reportadas:** la trazabilidad registra que la persona responsable creó reservas de ejemplo para equipos del catálogo, cerró y volvió a iniciar la aplicación y confirmó que la disponibilidad reflejaba la reserva persistida; también reporta pruebas de reserva pasada, equipo desconocido e intervalo inválido. Los datos se describen como ejemplos de prueba, no como datos personales. No se encontró una captura o salida de consola independiente archivada; no se repitieron esas pruebas manuales durante esta revisión.
-- **Revisión documental:** tras una revisión adicional se completó el [README.md](../README.md) con instrucciones de entorno, dependencias, ejecución, pruebas, persistencia y límites. El README en `b090669` documenta esos pasos. La versión actual añade además una sección de reinicialización de la base que está modificada localmente y no está incluida en ese commit.
-- **Aceptación humana:** el registro actual de D-04 indica que la persona responsable consideró que el trabajo estaba correctamente encaminado y autorizó marcarlo completado. Esa aceptación está registrada en la trazabilidad y en la interacción disponible, no en un artefacto independiente del repositorio.
-- **Estado y límites:** completado según la aceptación humana registrada. La suite actual pasó en esta revisión. Las pruebas automatizadas verifican la reapertura del repositorio sobre una base temporal; no lanzan dos procesos CLI independientes. Las verificaciones manuales anteriores se documentan como reportadas, no como repetidas ahora.
+- **Tipo y objetivo:** episodio de delegación para implementar y verificar el catálogo, la disponibilidad, la creación y cancelación de reservas, las validaciones y la persistencia descritas en [docs/especificacion.md](./especificacion.md).
 
-## 3. Implementación, verificación y aceptación humana
+- **Contexto y referencias:** estructura creada en D-03, arquitectura aprobada, especificación vigente y requisito de utilizar bases de prueba aisladas, conservar el historial de cancelaciones y no crear commits automáticamente.
+
+- **Instrucciones proporcionadas:** se realizaron dos intervenciones con Copilot. La primera solicitó implementar las operaciones definidas en la especificación, mantener separadas la lógica de negocio, la persistencia SQLite y la interfaz de consola, agregar pruebas automatizadas, ejecutar la suite, corregir los errores encontrados y actualizar la trazabilidad, dejando pendiente la aceptación humana. La segunda solicitó revisar la implementación sin modificar archivos, contrastarla con la especificación, ejecutar nuevamente las pruebas e informar problemas concretos y una recomendación de aprobación. Los prompts completos están disponibles en el historial de la interacción, pero no se conservaron como archivos independientes del repositorio.
+
+- **Implementación realizada:** se incorporaron modelos de equipo y reserva; validación del formato y de la zona horaria; rechazo de fechas inválidas y horas locales inexistentes o ambiguas; validaciones de equipo, solicitante e intervalo; consulta y creación con una regla común de superposición; persistencia SQLite; cancelación no destructiva y operaciones mediante la CLI. La dependencia [requirements.txt](../requirements.txt), que declara `tzdata`, se añadió porque el entorno Windows no encontraba los datos IANA. Estos cambios están incluidos en `b090669`.
+
+- **Errores durante el desarrollo:** durante la primera ejecución de la suite se detectó que el catálogo SQLite no quedaba confirmado y que una fecha seleccionada para probar una hora ambigua no correspondía a una transición ambigua de la zona horaria. Según el registro de la intervención, se corrigieron la transacción y el ejemplo de prueba. No se conservaron logs independientes de esos fallos; las correcciones y el estado final pueden contrastarse con el código y las pruebas disponibles.
+
+- **Pruebas automatizadas:** [tests/test_reservations.py](../tests/test_reservations.py) utiliza directorios y archivos SQLite temporales. La implementación registró 17 pruebas aprobadas. Durante la revisión posterior se ejecutó nuevamente:
+
+  ```powershell
+  $env:PYTHONPATH = (Resolve-Path .\src).Path
+  .\.venv\Scripts\python.exe -m unittest discover -s tests -v
+  ```
+
+  El resultado observado fue `Ran 17 tests ... OK`. Esta ejecución verificó la suite automatizada, pero no repitió las verificaciones manuales realizadas anteriormente.
+
+- **Verificaciones manuales reportadas:** la trazabilidad registra que la persona responsable creó reservas de ejemplo para equipos del catálogo, cerró y volvió a iniciar la aplicación y comprobó que la disponibilidad reflejaba la reserva persistida. También reporta pruebas de reservas pasadas, equipos desconocidos e intervalos inválidos. Los datos se describen como ejemplos de prueba, no como datos personales. No se encontró una captura o salida de consola independiente archivada y estas verificaciones no se repitieron durante la revisión posterior.
+
+- **Revisión posterior:** Copilot inspeccionó la implementación, las pruebas, las dependencias, el README y la especificación, y volvió a ejecutar la suite sin modificar archivos. Informó que las reglas principales estaban cubiertas y señaló que la prueba de persistencia reabre el repositorio sobre una base temporal, pero no inicia dos procesos CLI independientes. También identificó inicialmente la falta de instrucciones de instalación y ejecución en el README; posteriormente se completó esa documentación.
+
+- **Revisión documental:** el [README.md](../README.md) incluido en `b090669` documenta el entorno, las dependencias, la ejecución, las pruebas, la persistencia y los límites del sistema. La versión actual incorpora además una sección de reinicialización de la base de datos que está modificada localmente y no forma parte de ese commit.
+
+- **Aceptación humana:** la trazabilidad registra que la persona responsable consideró que el trabajo estaba correctamente encaminado y autorizó marcarlo como completado. Esta aceptación se documenta en la trazabilidad y en la interacción disponible, no en un artefacto independiente del repositorio.
+
+- **Evidencias verificables:** `src/reservas/`, [tests/test_reservations.py](../tests/test_reservations.py), [requirements.txt](../requirements.txt), [README.md](../README.md), [docs/especificacion.md](./especificacion.md), los resultados registrados de las ejecuciones de pruebas y el commit `b090669`. Este commit evidencia los cambios incluidos en él, pero no la modificación local posterior del README ni las verificaciones manuales que no cuentan con registros independientes.
+
+- **Estado y límites:** completado según la aceptación humana registrada. La suite automatizada pasó en la revisión posterior. Las pruebas verifican la reapertura del repositorio sobre una base temporal, pero no lanzan dos procesos CLI independientes. Las comprobaciones manuales anteriores se documentan como reportadas, no como repetidas durante la revisión. No se creó un commit automáticamente.
+
+## 2. Implementación, verificación y aceptación humana
 
 ### Estado observable en el código
 
@@ -118,7 +133,7 @@ La implementación actual permite listar el catálogo, consultar disponibilidad,
 - [src/reservas/models.py](../src/reservas/models.py)
 - [tests/test_reservations.py](../tests/test_reservations.py)
 
-El [README.md](../README.md) declara que no hay opción en el menú para consultar el historial completo, administración del catálogo, interfaz gráfica, acceso remoto, autenticación real, pagos, notificaciones ni integraciones externas. Esta lista describe el alcance documentado del proyecto, no requisitos del PDF ausente.
+El [README.md](../README.md) declara que no hay opción en el menú para consultar el historial completo, administración del catálogo, interfaz gráfica, acceso remoto, autenticación real, pagos, notificaciones ni integraciones externas. Esta lista describe las funcionalidades incluidas y las limitaciones declaradas del proyecto. Los requisitos de referencia son los establecidos en la consigna del desafío y desarrollados en `docs/especificacion.md`. Las funcionalidades adicionales mencionadas como fuera de alcance no deben interpretarse como requisitos nuevos.
 
 ### Ejecución de pruebas registrada en esta revisión
 
@@ -133,7 +148,7 @@ Resultado observado: **17 pruebas ejecutadas, 17 aprobadas (`OK`)**. La suite us
 
 Las verificaciones manuales de persistencia y validaciones que aparecen en D-04 son declaraciones registradas de la persona responsable. No se realizaron nuevamente durante la revisión de trazabilidad.
 
-## 4. Evidencias y trazabilidad en Git
+## 3. Evidencias y trazabilidad en Git
 
 ### Commits relacionados
 
