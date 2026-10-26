@@ -26,7 +26,7 @@ También se solicitó que el agente identificara una arquitectura mínima, decis
 
 **Objetivo:** revisar las recomendaciones de D-01, tomar decisiones explícitas sobre los aspectos que la consigna no especificaba y actualizar el plan antes de implementar.
 
-**Extracto real del primer prompt:**
+**Primer extracto literal de la instrucción:**
 
 > Acepto la recomendación de utilizar Python, una interfaz de línea de comandos (CLI), SQLite y una arquitectura mínima que separe interfaz, lógica de negocio y persistencia.
 
@@ -36,7 +36,7 @@ El prompt solicitó comparar las decisiones con los requisitos originales, actua
 
 **Acción del agente:** comparó las decisiones propuestas con los requisitos y no identificó contradicciones. Actualizó el plan de trabajo y señaló que todavía era necesario precisar el identificador de la zona horaria y la ubicación de la base de datos. También quedaba pendiente definir el formato final de la CLI.
 
-**Decisión humana y segundo extracto real del prompt:**
+**Decisión humana y segundo extracto literal de la instrucción:**
 
 Para cerrar los aspectos pendientes, se proporcionó la siguiente instrucción:
 
@@ -113,11 +113,11 @@ Con esta instrucción quedaron definidas la zona horaria `America/Argentina/Cord
 
 - **Revisión posterior:** Copilot inspeccionó la implementación, las pruebas, las dependencias, el README y la especificación, y volvió a ejecutar la suite sin modificar archivos. Informó que las reglas principales estaban cubiertas y señaló que la prueba de persistencia reabre el repositorio sobre una base temporal, pero no inicia dos procesos CLI independientes. También identificó inicialmente la falta de instrucciones de instalación y ejecución en el README; posteriormente se completó esa documentación.
 
-- **Revisión documental:** el [README.md](../README.md) incluido en `b090669` documenta el entorno, las dependencias, la ejecución, las pruebas, la persistencia y los límites del sistema. La versión actual incorpora además una sección de reinicialización de la base de datos que está modificada localmente y no forma parte de ese commit.
+- **Revisión documental:** el [README.md](../README.md) incluido en `b090669` documenta el entorno, las dependencias, la ejecución, las pruebas, la persistencia y los límites del sistema. La versión actual del README, publicada en la rama `main`, incorpora además una sección de reinicialización de la base de datos. La incorporación de esta sección y su relación con los cambios posteriores deben determinarse a partir del historial de Git.
 
 - **Aceptación humana:** la trazabilidad registra que la persona responsable consideró que el trabajo estaba correctamente encaminado y autorizó marcarlo como completado. Esta aceptación se documenta en la trazabilidad y en la interacción disponible, no en un artefacto independiente del repositorio.
 
-- **Evidencias verificables:** `src/reservas/`, [tests/test_reservations.py](../tests/test_reservations.py), [requirements.txt](../requirements.txt), [README.md](../README.md), [docs/especificacion.md](./especificacion.md), los resultados registrados de las ejecuciones de pruebas y el commit `b090669`. Este commit evidencia los cambios incluidos en él, pero no la modificación local posterior del README ni las verificaciones manuales que no cuentan con registros independientes.
+- **Evidencias verificables:** `src/reservas/`, [tests/test_reservations.py](../tests/test_reservations.py), [requirements.txt](../requirements.txt), [README.md](../README.md), [docs/especificacion.md](./especificacion.md), los resultados registrados de las ejecuciones de pruebas y el commit `b090669`. El commit permite verificar los cambios incluidos en esa versión. El README publicado permite consultar la documentación actual; las verificaciones manuales que no cuentan con registros independientes deben evaluarse por separado.
 
 - **Estado y límites:** completado según la aceptación humana registrada. La suite automatizada pasó en la revisión posterior. Las pruebas verifican la reapertura del repositorio sobre una base temporal, pero no lanzan dos procesos CLI independientes. Las comprobaciones manuales anteriores se documentan como reportadas, no como repetidas durante la revisión. No se creó un commit automáticamente.
 
@@ -125,7 +125,7 @@ Con esta instrucción quedaron definidas la zona horaria `America/Argentina/Cord
 
 ### Estado observable en el código
 
-La implementación actual permite listar el catálogo, consultar disponibilidad, crear reservas y cancelar por ID mediante el menú CLI. El repositorio usa SQLite en `data/reservas.db` por defecto y la lógica aplica el formato `AAAA-MM-DD HH:MM` y la zona IANA `America/Argentina/Cordoba`. Las funciones existentes, las validaciones y los casos automatizados pueden revisarse en:
+En la versión actual del repositorio, la aplicación permite listar el catálogo, consultar disponibilidad, crear reservas y cancelar por ID mediante el menú CLI. El repositorio usa SQLite en `data/reservas.db` por defecto y la lógica aplica el formato `AAAA-MM-DD HH:MM` y la zona IANA `America/Argentina/Cordoba`. Las funciones existentes, las validaciones y los casos automatizados pueden revisarse en:
 
 - [src/reservas/cli.py](../src/reservas/cli.py)
 - [src/reservas/service.py](../src/reservas/service.py)

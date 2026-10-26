@@ -118,32 +118,24 @@ La versión de la extensión de GitHub Copilot todavía está pendiente de recop
 
 ### 3.2. Función y contexto proporcionado
 
-El agente se empleó como asistente de programación para desarrollar una aplicación local de reservas de equipamiento de laboratorio. El objetivo del proceso no se limitó a obtener código funcional, sino que también contempló documentar la delegación de tareas, la verificación de resultados y las decisiones tomadas durante el desarrollo.
+El agente se utilizó como asistente de programación para desarrollar una aplicación local de reservas de equipamiento de laboratorio. Su función comprendió el análisis de requisitos, la propuesta de soluciones técnicas y la asistencia en la implementación, dentro de un proceso que también contempló la revisión humana y la verificación de los resultados.
 
-Como contexto inicial, se informó al agente que se trataba de un desafío académico y que se utilizaría GitHub Copilot en modo Agent para asistir en la implementación y registrar el proceso de trabajo.
+Como contexto inicial, se le informó que el desarrollo correspondía a un desafío académico y que se utilizaría GitHub Copilot en modo Agent para asistir en la implementación y documentar el proceso de trabajo.
 
-El primer prompt recuperado estableció que, antes de escribir código o modificar archivos, el agente debía analizar los requisitos y proponer un plan de implementación por etapas. La solicitud incluyó el equipamiento inicial, los requisitos funcionales, las reglas de negocio, las pruebas obligatorias y las restricciones del sistema.
+La primera instrucción recuperada estableció que el agente debía analizar los requisitos y proponer un plan de implementación por etapas antes de escribir código o modificar archivos. También se indicó que debía distinguir entre los requisitos proporcionados, sus recomendaciones y las decisiones pendientes de aprobación.
 
-En particular, se le solicitó:
-
-- Proponer una arquitectura mínima y una tecnología adecuada.
-- Identificar las decisiones técnicas que requerían una definición explícita.
-- Dividir la implementación en tareas pequeñas y verificables.
-- Relacionar cada requisito con pruebas que permitieran comprobar su cumplimiento.
-- Identificar las decisiones que debían ser revisadas y aprobadas por una persona.
-
-También se indicó expresamente que no debía escribir código ni modificar archivos durante esa primera etapa, que no debía inventar requisitos y que debía diferenciar entre requisitos proporcionados, recomendaciones y decisiones pendientes.
-
-Los extractos de los prompts iniciales se incorporaron a los episodios D-01 y D-02 de este documento. Los textos completos se pueden consultar en el historial de GitHub Copilot, pero no se archivan íntegramente en el repositorio. Los episodios posteriores se distinguen según se disponga de un prompt literal o de un resumen de la intervención.
+El detalle de las instrucciones, las tareas delegadas, las intervenciones humanas y las evidencias asociadas se encuentra en los episodios D-01 a D-04 de [`docs/trazabilidad.md`](docs/trazabilidad.md). Allí se diferencia entre los extractos literales de las instrucciones y los resúmenes de las intervenciones cuando no se dispone del prompt completo.
 
 ### 3.3. Herramientas y supervisión humana
 
-Según la información recuperada, el agente contó con capacidades para leer y modificar archivos del proyecto y ejecutar pruebas. La revisión humana se contempló mediante la inspección de los cambios propuestos, su aprobación y la ejecución de pruebas para verificar el comportamiento de la aplicación.
+GitHub Copilot en modo Agent se utilizó con capacidades de lectura y modificación de archivos y de ejecución de comandos y pruebas, según la información recuperada del entorno de trabajo.
 
-Estos mecanismos se consideran parte del proceso de control del desarrollo asistido. Sin embargo, la descripción de los mecanismos de supervisión no implica, por sí sola, que todos los cambios hayan sido revisados ni que todas las pruebas hayan resultado satisfactorias. La aceptación de resultados específicos debe justificarse mediante los episodios de delegación, los cambios versionados y las evidencias de prueba correspondientes.
+La supervisión humana contempló la revisión de los cambios propuestos, la evaluación de las decisiones técnicas y la comprobación del comportamiento de la aplicación mediante pruebas. La aceptación de los resultados se documenta en los episodios de delegación correspondientes, junto con las evidencias disponibles.
+
+La descripción de estas prácticas no implica que todos los cambios o resultados hayan sido verificados. Por ello, el registro de trazabilidad distingue entre las acciones informadas por el agente, las decisiones humanas y los resultados respaldados por evidencias.
 
 ## 4. Registro de decisiones y delegación
 
-El documento [docs/trazabilidad.md](docs/trazabilidad.md) registra los episodios de delegación D-01 a D-04, las decisiones tomadas, las intervenciones humanas y las evidencias asociadas a los cambios versionados.
+El documento [`docs/trazabilidad.md`](docs/trazabilidad.md) registra los episodios de delegación D-01 a D-04, las decisiones humanas, las intervenciones realizadas y las evidencias disponibles, incluidas las referencias a los cambios versionados.
 
 La [especificación del sistema](docs/especificacion.md) complementa este registro con los requisitos funcionales, las reglas de negocio y las decisiones de diseño.
