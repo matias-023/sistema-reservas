@@ -124,7 +124,7 @@ Como contexto inicial, se le informó que el desarrollo correspondía a un desaf
 
 La primera instrucción recuperada estableció que el agente debía analizar los requisitos y proponer un plan de implementación por etapas antes de escribir código o modificar archivos. También se indicó que debía distinguir entre los requisitos proporcionados, sus recomendaciones y las decisiones pendientes de aprobación.
 
-El detalle de las instrucciones, las tareas delegadas, las intervenciones humanas y las evidencias asociadas se encuentra en los episodios D-01 a D-04 de [`docs/trazabilidad.md`](docs/trazabilidad.md). Allí se diferencia entre los extractos literales de las instrucciones y los resúmenes de las intervenciones cuando no se dispone del prompt completo.
+El detalle de las instrucciones, las tareas delegadas, las intervenciones humanas y las evidencias asociadas se encuentra en los episodios D-01 a D-03 de [`docs/trazabilidad.md`](docs/trazabilidad.md). Allí se diferencia entre los extractos literales de las instrucciones y los resúmenes de las intervenciones cuando no se dispone del prompt completo.
 
 ### 3.3. Herramientas y supervisión humana
 

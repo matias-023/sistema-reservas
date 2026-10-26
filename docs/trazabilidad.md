@@ -4,41 +4,31 @@
 
 Los resúmenes de instrucciones que siguen describen las intervenciones según la trazabilidad y los archivos disponibles. No son transcripciones literales. El repositorio no contiene enlaces archivados a sesiones o conversaciones.
 
-### D-01. Análisis de requisitos y planificación inicial
+### D-01. Análisis de requisitos, planificación y definición de decisiones de diseño
 
-**Objetivo:** obtener un plan de implementación antes de comenzar a escribir código, separando los requisitos de la consigna de las recomendaciones del agente y de las decisiones pendientes.
+**Objetivo:** analizar los requisitos de la consigna, elaborar un plan de implementación antes de comenzar a escribir código y definir las decisiones de diseño necesarias para orientar el desarrollo. Se buscó distinguir los requisitos obligatorios de las recomendaciones del agente, identificar los aspectos pendientes y establecer verificaciones para las funcionalidades previstas.
 
-**Extracto real del prompt:**
+**Primer extracto real del prompt:**
 
 > Antes de escribir código, analizá los requisitos siguientes y proponé un plan de implementación por etapas.
 
-También se solicitó que el agente identificara una arquitectura mínima, decisiones pendientes, tareas verificables, pruebas para cada requisito y decisiones que debían revisarse y aprobarse por una persona. Se indicó expresamente que no debía escribir código, modificar archivos ni afirmar haber ejecutado pruebas.
+También se solicitó que el agente identificara una arquitectura mínima, las decisiones pendientes, las tareas verificables, las pruebas correspondientes a cada requisito y las decisiones que debían revisarse y aprobarse por una persona. Se indicó expresamente que no debía escribir código, modificar archivos ni afirmar haber ejecutado pruebas durante esa intervención.
 
-**Acción del agente:** inspeccionó el estado del repositorio y leyó `README.md`, `docs/especificacion.md` y `docs/trazabilidad.md`. Después propuso una aplicación local en Python, con interfaz CLI, persistencia SQLite y separación entre interfaz, lógica de negocio y persistencia. También enumeró decisiones de diseño pendientes y propuso un plan de implementación con sus respectivas verificaciones.
-
-**Decisión humana:** la propuesta se utilizó como base para definir la arquitectura inicial. La aceptación explícita de Python, CLI, SQLite y la separación de responsabilidades quedó registrada en la interacción posterior D-02.
-
-**Resultado y evidencia:** la planificación se incorporó a la evolución de `docs/especificacion.md` y `docs/trazabilidad.md`. Los commits `0f07cf3` y `d33f71f` permiten consultar la evolución de esos documentos.
-
-**Verificación y límites:** la respuesta inicial declaró que no se había escrito código, modificado archivos ni ejecutado pruebas durante esa intervención. El plan propuesto no constituye por sí mismo evidencia de que las funcionalidades se hayan implementado o probado.
-
-### D-02. Aprobación de la arquitectura y definición de decisiones de diseño
-
-**Objetivo:** revisar las recomendaciones de D-01, tomar decisiones explícitas sobre los aspectos que la consigna no especificaba y actualizar el plan antes de implementar.
-
-**Primer extracto literal de la instrucción:**
-
-> Acepto la recomendación de utilizar Python, una interfaz de línea de comandos (CLI), SQLite y una arquitectura mínima que separe interfaz, lógica de negocio y persistencia.
-
-Además, se aprobaron los intervalos semiabiertos `[inicio, fin)`, el formato inicial `AAAA-MM-DD HH:MM`, el uso de la hora local de Corrientes, el rechazo de solicitantes vacíos después de eliminar espacios exteriores, la identificación de reservas mediante un ID único y la conservación del historial sin borrado automático.
-
-El prompt solicitó comparar las decisiones con los requisitos originales, actualizar el plan, señalar los aspectos pendientes y no modificar archivos ni escribir código en esa etapa.
-
-**Acción del agente:** comparó las decisiones propuestas con los requisitos y no identificó contradicciones. Actualizó el plan de trabajo y señaló que todavía era necesario precisar el identificador de la zona horaria y la ubicación de la base de datos. También quedaba pendiente definir el formato final de la CLI.
+**Acción del agente:** inspeccionó el estado del repositorio y leyó `README.md`, `docs/especificacion.md` y `docs/trazabilidad.md`. A partir del análisis, propuso una aplicación local en Python, con interfaz de línea de comandos (CLI), persistencia mediante SQLite y separación de responsabilidades entre la interfaz, la lógica de negocio y la persistencia. También enumeró decisiones de diseño pendientes y elaboró un plan de implementación por etapas con sus respectivas verificaciones.
 
 **Decisión humana y segundo extracto literal de la instrucción:**
 
-Para cerrar los aspectos pendientes, se proporcionó la siguiente instrucción:
+La propuesta se utilizó como base para definir la arquitectura inicial. En una interacción posterior, se aceptó explícitamente la recomendación de utilizar Python, una CLI, SQLite y una arquitectura mínima con separación de responsabilidades. La instrucción fue:
+
+> Acepto la recomendación de utilizar Python, una interfaz de línea de comandos (CLI), SQLite y una arquitectura mínima que separe interfaz, lógica de negocio y persistencia.
+
+Además, se aprobaron los intervalos semiabiertos `[inicio, fin)`, el formato inicial `AAAA-MM-DD HH:MM`, el uso de la hora local de Corrientes, el rechazo de solicitantes vacíos después de eliminar los espacios exteriores, la identificación de las reservas mediante un ID único y la conservación del historial sin borrado automático.
+
+Se solicitó comparar estas decisiones con los requisitos originales, actualizar el plan, señalar los aspectos que aún quedaban pendientes y no modificar archivos ni escribir código durante esa etapa.
+
+El agente comparó las decisiones con los requisitos y no identificó contradicciones. Actualizó el plan de trabajo y señaló que todavía era necesario precisar el identificador de la zona horaria, la ubicación de la base de datos y el formato definitivo de la CLI.
+
+Para resolver esos puntos, se proporcionó la siguiente instrucción:
 
 > En base a los aspectos que quedan pendientes:
 >
@@ -48,13 +38,13 @@ Para cerrar los aspectos pendientes, se proporcionó la siguiente instrucción:
 >
 > No realices modificaciones en archivos, ni crees nuevos archivos aún. Confirmame y actualiza el plan de ejecución primero.
 
-Con esta instrucción quedaron definidas la zona horaria `America/Argentina/Cordoba`, la ubicación de la base de datos en `data/reservas.db` y una interfaz CLI basada en un menú interactivo. También se reiteró que el agente debía actualizar el plan sin crear ni modificar archivos en esa intervención.
+Con esta instrucción quedaron definidas la zona horaria `America/Argentina/Cordoba`, la ubicación de la base de datos en `data/reservas.db` y una interfaz CLI basada en un menú interactivo. También se reiteró que el agente debía actualizar el plan y confirmar las decisiones sin crear ni modificar archivos en esa intervención.
 
-**Resultado y evidencia:** las decisiones iniciales de diseño se reflejaron en `docs/especificacion.md` y en el registro de trazabilidad. Los commits `0f07cf3` y `d33f71f` permiten revisar la evolución documental relacionada. La implementación posterior permite contrastar las decisiones aprobadas con el código existente.
+**Resultado y evidencia:** la planificación y las decisiones iniciales de diseño se reflejaron en la evolución de `docs/especificacion.md` y `docs/trazabilidad.md`. Los commits `0f07cf3` y `d33f71f` permiten consultar la evolución documental relacionada con esta etapa. La implementación posterior permite contrastar las decisiones aprobadas con el código del proyecto.
 
-**Verificación y límites:** las intervenciones documentadas en este episodio corresponden a la planificación y definición de criterios, no a la implementación. Los prompts demuestran las instrucciones dadas y las decisiones humanas expresadas, pero no prueban por sí solos que el agente haya actualizado correctamente el plan ni que las decisiones se hayan implementado. Esos resultados deben verificarse en las respuestas del agente, los documentos versionados y el código del proyecto.
+**Verificación y límites:** las intervenciones incluidas en este episodio corresponden al análisis, la planificación y la definición de criterios, no a la implementación de las funcionalidades. Las instrucciones documentadas permiten identificar los requerimientos planteados y las decisiones humanas expresadas, pero no demuestran por sí solas que el agente haya actualizado correctamente el plan ni que las decisiones se hayan implementado. Para verificar esos resultados es necesario contrastar las respuestas del agente con los documentos versionados y el código del proyecto. La respuesta inicial también declaró que no se había escrito código, modificado archivos ni ejecutado pruebas durante esa intervención.
 
-### D-03 — Preparación de la estructura inicial
+### D-02 — Preparación de la estructura inicial
 
 - **Tipo y objetivo:** episodio de delegación orientado a preparar el esqueleto inicial de la aplicación en Python, establecer la separación entre interfaz, lógica de negocio y persistencia, y realizar una verificación mínima sin implementar las operaciones completas de reservas.
 
@@ -88,7 +78,7 @@ Con esta instrucción quedaron definidas la zona horaria `America/Argentina/Cord
 
 - **Estado y límites:** completado como preparación estructural. La prueba de humo y el punto de entrada se ejecutaron según el registro disponible. La persona responsable autorizó continuar con la implementación funcional. Esta decisión no implica que se haya realizado una revisión técnica independiente adicional de todos los cambios de D-03.
 
-### D-04 — Implementación de la lógica central de reservas
+### D-03 — Implementación de la lógica central de reservas
 
 - **Tipo y objetivo:** episodio de delegación para implementar y verificar el catálogo, la disponibilidad, la creación y cancelación de reservas, las validaciones y la persistencia descritas en [docs/especificacion.md](./especificacion.md).
 
@@ -152,12 +142,16 @@ Las verificaciones manuales de persistencia y validaciones que aparecen en D-04 
 
 ### Commits relacionados
 
+La siguiente tabla relaciona los episodios de delegación documentados con los commits que permiten revisar la evolución del repositorio. Los episodios D-01 y D-02 originales se unificaron en el nuevo D-01, ya que corresponden a etapas consecutivas de análisis, planificación y definición de decisiones de diseño.
+
 | Episodio / alcance | Commit verificado | Archivos relevantes comprobados |
 |---|---|---|
-| Estructura inicial vacía | `0ddc4a2` — `inicializar estructura del proyecto` | Añadió `.gitignore`, [README.md](../README.md), [docs/especificacion.md](./especificacion.md) y [docs/trazabilidad.md](./trazabilidad.md) como archivos vacíos. |
-| Especificación y primer registro D-01 | `0f07cf3` — `docs: Refinando las especificaciones del proyecto` | Añadió el contenido de [docs/especificacion.md](./especificacion.md) y el primer registro D-01 en [docs/trazabilidad.md](./trazabilidad.md). |
-| Cierre de decisiones D-01 y registro D-02 | `d33f71f` — `docs: cerrar decisiones iniciales de diseño` | Actualizó [docs/trazabilidad.md](./trazabilidad.md), incluyendo aceptación de arquitectura y decisiones iniciales. |
-| Estructura de D-03 | `fff2336` — `docs: Actualizando trazabilidad del proyecto. src: Redefiniendo estructura del proyecto` | Añadió estructura bajo [src/reservas/](../src/reservas/), [data/.gitkeep](../data/.gitkeep) y el archivo histórico `tests/test_structure.py`; actualizó `.gitignore` y la trazabilidad. |
-| Implementación D-04 y README inicial | `b090669` — `Implementación lógica del sistema. Redacción del README.md.` | Añadió modelos, servicio, repositorio, pruebas y [requirements.txt](../requirements.txt); modificó la CLI, [README.md](../README.md) y trazabilidad; eliminó `tests/test_structure.py`. |
+| Estructura inicial vacía del repositorio | `0ddc4a2` — `inicializar estructura del proyecto` | Añadió `.gitignore`, `README.md`, `docs/especificacion.md` y `docs/trazabilidad.md` como archivos iniciales vacíos. |
+| **D-01. Análisis de requisitos, planificación y definición de decisiones de diseño** | `0f07cf3` — `docs: Refinando las especificaciones del proyecto` | Incorporó contenido a `docs/especificacion.md` y el primer registro de trazabilidad correspondiente a la planificación inicial. |
+| **D-01. Análisis de requisitos, planificación y definición de decisiones de diseño** | `d33f71f` — `docs: cerrar decisiones iniciales de diseño` | Actualizó `docs/trazabilidad.md` para registrar la aceptación de la arquitectura y las decisiones iniciales de diseño. Este commit complementa la evidencia del episodio D-01. |
+| **D-02. Preparación de la estructura inicial** | `fff2336` — `docs: Actualizando trazabilidad del proyecto. src: Redefiniendo estructura del proyecto` | Añadió la estructura de módulos bajo `src/reservas/`, el archivo `data/.gitkeep` y el archivo histórico `tests/test_structure.py`. También actualizó `.gitignore` y el registro de trazabilidad. |
+| **D-03. Implementación y verificación del sistema** | `b090669` — `Implementación lógica del sistema. Redacción del README.md.` | Incorporó los modelos, el servicio, el repositorio y las pruebas automatizadas; modificó la CLI, `README.md` y la trazabilidad, añadió `requirements.txt` y eliminó `tests/test_structure.py`. |
 
-Los commits confirman qué archivos cambiaron, no el contenido de prompts, las salidas de cada conversación ni las aprobaciones verbales. Los mensajes e instrucciones originales de Copilot no están guardados como archivos o enlaces en el repositorio.
+Los commits permiten verificar los cambios incorporados al repositorio y su secuencia temporal. Sin embargo, no demuestran por sí solos el contenido completo de las conversaciones con el agente, las respuestas generadas ni las aprobaciones expresadas durante las interacciones. Los extractos de instrucciones y las decisiones humanas se documentan en los episodios correspondientes de este archivo; no debe interpretarse que todos los prompts originales están archivados de forma independiente.
+
+La verificación de la implementación y de las pruebas automatizadas se detalla en el episodio D-03. Las verificaciones manuales de persistencia y validaciones se identifican como realizadas por la persona responsable, sin atribuirles una ejecución independiente durante la revisión documental.
