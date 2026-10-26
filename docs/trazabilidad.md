@@ -113,11 +113,3 @@ Las verificaciones manuales de persistencia y validaciones que aparecen en D-04 
 | Implementación D-04 y README inicial | `b090669` — `Implementación lógica del sistema. Redacción del README.md.` | Añadió modelos, servicio, repositorio, pruebas y [requirements.txt](../requirements.txt); modificó la CLI, [README.md](../README.md) y trazabilidad; eliminó `tests/test_structure.py`. |
 
 Los commits confirman qué archivos cambiaron, no el contenido de prompts, las salidas de cada conversación ni las aprobaciones verbales. Los mensajes e instrucciones originales de Copilot no están guardados como archivos o enlaces en el repositorio.
-
-### Estado Git observado al iniciar esta revisión
-
-- Rama: `main`; `HEAD` y `origin/main` apuntaban al commit `b090669`.
-- El árbol de trabajo mostraba cambios locales en [README.md](../README.md) y [docs/trazabilidad.md](./trazabilidad.md).
-- El diff local del README añadía información sobre inicialización y reinicialización de SQLite; no se atribuye a ninguno de los commits anteriores.
-- La trazabilidad también tenía cambios locales anteriores a esta edición. Esta reestructuración del documento no se ha incorporado a un commit.
-- No se encontró configuración de agente versionada ni evidencia independiente de conversaciones, capturas o logs de consola.
