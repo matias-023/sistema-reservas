@@ -99,7 +99,7 @@ Al volver a ejecutar la aplicación, se crea e inicializa una base nueva; las re
 
 ## 3. Preparación del agente
 
-[docs/trazabilidad.md](docs/trazabilidad.md) registra el uso de GitHub Copilot en modo Agent integrado en Visual Studio Code y el entorno Windows/PowerShell. El identificador exacto del modelo, las transcripciones de los prompts y una configuración versionada del agente no están disponibles en el repositorio. Los resúmenes de instrucciones de ese documento son paráfrasis, no citas literales.
+[docs/trazabilidad.md](docs/trazabilidad.md) registra el uso de GitHub Copilot en modo Agent como asistente de programación en Visual Studio Code, elegido para delegar y documentar el trabajo. Allí se detallan el entorno, las instrucciones recuperables, la supervisión humana y sus límites de evidencia. No están disponibles el identificador del modelo, la versión exacta de Python usada, ni una configuración versionada o transcripción completa de los prompts.
 
 ## 4. Registro de decisiones y delegación
 

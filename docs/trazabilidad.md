@@ -2,29 +2,62 @@
 
 ## 1. Preparación del agente
 
-### Herramienta, entorno e instrucciones
+### 1.1. Entorno y agente utilizado
 
-- **Herramienta y modo:** los registros de D-01 describen el uso de GitHub Copilot en modo Agent integrado en Visual Studio Code. No se encontró en el repositorio una configuración versionada del agente.
-- **Sistema operativo:** Windows, verificable por el entorno de trabajo y las rutas de ejecución registradas. La documentación del proyecto proporciona comandos para PowerShell.
-- **IDE:** Visual Studio Code figura en el registro de D-01. No hay versión del IDE archivada.
-- **Modelo:** el identificador exacto del modelo no está disponible en los archivos del repositorio ni en la trazabilidad consultada.
-- **Instrucciones del agente:** no se encontraron `AGENTS.md`, archivos `.instructions.md`, `.agent.md`, `.prompt.md`, directorio `.github/` ni otras instrucciones de agente versionadas. Los prompts originales no están archivados como transcripciones.
-- **Instrucciones generales:** no hay un archivo local del proyecto que permita verificar instrucciones generales persistentes del agente. Los resúmenes de instrucciones incluidos en los episodios siguientes son paráfrasis de la trazabilidad, no citas literales de prompts.
-- **Contexto de trabajo:** los episodios hacen referencia a la especificación del proyecto, a la estructura del repositorio y a las decisiones que la persona responsable fue aprobando. El PDF de la consigna original y su contenido no están disponibles en este repositorio; esta documentación no afirma que la especificación reproduzca esa consigna.
+Para el desarrollo del sistema de reservas se utilizó **GitHub Copilot en modo Agent, integrado en Visual Studio Code**, como agente de programación asistida por inteligencia artificial.
 
-### Niveles de evidencia
+La información recuperada del entorno de trabajo es la siguiente:
 
-- **Verificado directamente en esta revisión:** archivos y código presentes, commits y sus listas de cambios, estado de Git, destinos de los enlaces Markdown y ejecución actual de la suite automatizada.
-- **Registrado, pero no corroborado con evidencia independiente:** resúmenes de prompts, acciones de sesiones anteriores y verificaciones manuales reportadas por la persona responsable. Se identifican como registros de trazabilidad, no como salidas o capturas disponibles.
-- **No disponible:** PDF original, transcripciones o enlaces archivados de sesiones, prompts literales, capturas/logs manuales independientes e identificador exacto del modelo.
+| Elemento | Información |
+|---|---|
+| Editor | Visual Studio Code 1.143.1 |
+| Lenguaje de programación | Python 3.14 |
+| Agente | GitHub Copilot en modo Agent |
+| Modelo informado | `gpt-6-luna` |
+| Herramientas y permisos | Lectura y modificación de archivos, y ejecución de pruebas |
+| Revisión humana | Revisión de diferencias (*diff*), aprobación de cambios y ejecución de pruebas |
 
-### Herramientas, supervisión y conservación del progreso
+La versión de la extensión de GitHub Copilot todavía está pendiente de recopilación. Asimismo, el identificador del modelo se registra tal como fue recuperado y queda pendiente de contrastar con la información mostrada por la herramienta. Las versiones del entorno se documentan según los datos disponibles, sin asumir que se ha conservado una evidencia independiente de cada una.
 
-Los commits muestran que se preparó una estructura Python, se modificaron módulos y pruebas, se declaró `tzdata` y se redactó documentación. La trazabilidad registra ejecuciones de `unittest`, comandos de Git y verificaciones en PowerShell. En la revisión actual se volvió a ejecutar la suite de pruebas, con el resultado que se consigna en D-04.
+### 1.2. Función y contexto proporcionado
 
-La persona responsable definió y aprobó decisiones de diseño en D-01 y D-02, aprobó la estructura de D-03 y posteriormente aceptó el cierre de D-04, según las interacciones y el registro de trazabilidad disponibles. Las verificaciones manuales de la aplicación también se atribuyen expresamente a la persona responsable; no se presentan como pruebas ejecutadas por el agente.
+El agente se empleó como asistente de programación para desarrollar una aplicación local de reservas de equipamiento de laboratorio. El objetivo del proceso no se limitó a obtener código funcional, sino que también contempló documentar la delegación de tareas, la verificación de resultados y las decisiones tomadas durante el desarrollo.
 
-Las decisiones se conservaron en [docs/especificacion.md](./especificacion.md) y [docs/trazabilidad.md](./trazabilidad.md); los cambios de implementación y documentación se incorporaron a los commits enumerados en la sección 4. Al comenzar esta revisión, `git status` mostraba modificaciones locales tanto en [README.md](../README.md) como en este archivo. El contenido actual del README incluye una sección de reinicialización de SQLite que no forma parte del commit `b090669`; no se atribuye ese cambio local a un commit ni a una persona concreta.
+Como contexto inicial, se informó al agente que se trataba de un desafío académico y que se utilizaría GitHub Copilot en modo Agent para asistir en la implementación y registrar el proceso de trabajo.
+
+El primer prompt recuperado estableció que, antes de escribir código o modificar archivos, el agente debía analizar los requisitos y proponer un plan de implementación por etapas. La solicitud incluyó el equipamiento inicial, los requisitos funcionales, las reglas de negocio, las pruebas obligatorias y las restricciones del sistema.
+
+En particular, se le solicitó:
+
+- Proponer una arquitectura mínima y una tecnología adecuada.
+- Identificar las decisiones técnicas que requerían una definición explícita.
+- Dividir la implementación en tareas pequeñas y verificables.
+- Relacionar cada requisito con pruebas que permitieran comprobar su cumplimiento.
+- Identificar las decisiones que debían ser revisadas y aprobadas por una persona.
+
+También se indicó expresamente que no debía escribir código ni modificar archivos durante esa primera etapa, que no debía inventar requisitos y que debía diferenciar entre requisitos proporcionados, recomendaciones y decisiones pendientes.
+
+Los prompts originales están disponibles en el historial de GitHub Copilot. Su recopilación y vinculación con los episodios de delegación constituyen una tarea pendiente para completar la trazabilidad del proceso.
+
+### 1.3. Herramientas y supervisión humana
+
+Según la información recuperada, el agente contó con capacidades para leer y modificar archivos del proyecto y ejecutar pruebas. La revisión humana se contempló mediante la inspección de los cambios propuestos, su aprobación y la ejecución de pruebas para verificar el comportamiento de la aplicación.
+
+Estos mecanismos se consideran parte del proceso de control del desarrollo asistido. Sin embargo, la descripción de los mecanismos de supervisión no implica, por sí sola, que todos los cambios hayan sido revisados ni que todas las pruebas hayan resultado satisfactorias. La aceptación de resultados específicos debe justificarse mediante los episodios de delegación, los cambios versionados y las evidencias de prueba correspondientes.
+
+### 1.4. Evidencias pendientes
+
+Para completar el registro de la preparación del agente, quedan pendientes las siguientes tareas:
+
+- Recuperar la versión instalada de la extensión de GitHub Copilot.
+- Contrastar el identificador del modelo con el dato que muestra la herramienta, si está disponible.
+- Recopilar los prompts originales en orden cronológico y relacionarlos con las tareas delegadas.
+- Identificar las instrucciones persistentes o configuraciones específicas del agente que efectivamente se utilizaron, si existieron.
+- Precisar el contexto disponible para cada intervención relevante.
+- Vincular los episodios de delegación con los archivos modificados, los commits, las pruebas y las decisiones de aceptación, corrección o rechazo.
+- Documentar ejemplos concretos de revisión humana y, cuando corresponda, de adaptación de las instrucciones o del enfoque de trabajo.
+
+Los elementos pendientes no se completarán mediante suposiciones. Si algún dato no puede recuperarse, se indicará expresamente como no disponible.
 
 ## 2. Registro de episodios de delegación
 
