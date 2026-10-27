@@ -58,8 +58,7 @@ El usuario podrá cancelar una reserva mediante su ID. La cancelación conservar
 
 ### RF-04 — Operar mediante menú interactivo
 
-La aplicación ofrecerá un menú CLI para consultar disponibilidad, crear una reserva, cancelar mediante ID y salir.
-
+La aplicación ofrecerá un menú CLI para consultar los equipos del inventario, consultar disponibilidad, crear una reserva, cancelar mediante ID y salir.
 **Casos de prueba asociados**
 
 - **CP-17:** recorrer cada opción disponible del menú y comprobar que invoca la operación correspondiente.
@@ -70,7 +69,7 @@ La aplicación ofrecerá un menú CLI para consultar disponibilidad, crear una r
 
 ### RN-01 — Equipos válidos
 
-Solo se aceptarán identificadores incluidos en el inventario inicial de esta especificación.
+Antes de comparar, el identificador se normaliza: se eliminan los espacios exteriores y se convierte a mayúsculas (por ejemplo, `mic-01` equivale a `MIC-01`). Esta normalización es una decisión de implementación, no un requisito del desafío original.
 
 **Caso asociado:** CP-07; para la consulta, CP-04.
 
@@ -153,5 +152,8 @@ Los requisitos funcionales de la sección 3 y las reglas de negocio sobre equipo
 - La base se guarda en `data/reservas.db`, en una ruta estable relativa a la ubicación de la aplicación.
 - Se conservan reservas activas y canceladas sin borrado automático.
 - No se impondrá una duración máxima porque el desafío no la establece.
+- No se impondrá un límite de anticipación porque el desafío no lo establece.
+- El menú incluye la consulta de los equipos del inventario precargado.
+- El identificador de equipo se normaliza (espacios exteriores y mayúsculas) antes de validarlo.
 
 No quedan decisiones pendientes identificadas para la especificación actual.
